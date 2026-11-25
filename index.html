@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#091e19">
-<meta name="description" content="Новогодний барабан с четырьмя категориями демонстрационных скидок.">
-<title>Новогодний барабан скидок</title>
+<meta name="theme-color" content="#0d1022">
+<meta name="description" content="Демонстрационный барабан xPlatform с пятью категориями скидок.">
+<title>xPlatform — барабан скидок</title>
 <style>
 :root{color-scheme:dark;--ink:#fff6e4;--muted:#b8cdc3;--gold:#ffcf77;--green:#102f26;--row:110px;font-family:system-ui,sans-serif}
 *{box-sizing:border-box}
@@ -59,7 +59,7 @@ h1 em{display:block;color:var(--gold);font-weight:500}
 .machine p{text-align:center;color:var(--muted);font-size:12px;margin:12px 0 2px}
 h2{font-family:Georgia,serif;font-weight:500;font-size:clamp(25px,3vw,34px);margin:0 0 15px}
 .catalog{margin-top:46px}
-.categories{display:grid;grid-template-columns:repeat(4,1fr);gap:11px}
+.categories{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:11px}
 .category{padding:8px;min-height:87px;border:1px solid #fff2}
 .category .art{width:65px}
 .category strong{font-size:14px}
@@ -80,19 +80,51 @@ code{user-select:all;color:var(--gold);overflow-wrap:anywhere}
 @media(max-width:900px){.categories{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:700px){:root{--row:88px}.shell{width:calc(100% - 28px)}header{padding:12px 0}.brand span{max-width:110px;font-size:13px}.brand i{width:33px;height:33px}.ghost{padding:9px 10px;font-size:12px}nav{gap:4px}main{padding:26px 0}.hero{grid-template-columns:1fr;gap:21px}h1{font-size:clamp(43px,10.1vw,72px);margin:10px 0 13px}.lead{font-size:15px;margin-bottom:12px}.timer{padding:8px 12px}.timer p{margin-bottom:5px}.clock b{font-size:20px}.machine{padding:10px}.card{gap:8px;padding-right:9px}.card .art{width:72px}.catalog{margin-top:27px}.category{gap:5px;padding:6px}.category .art{width:47px}.category strong{font-size:12px}}
 @media(max-width:350px){.brand span{display:none}.category .art{width:35px}}
+
+:root{--ink:#f6f8ff;--muted:#b9c2db;--gold:#bfc2ff}
+body{background:radial-gradient(ellipse at 84% 15%,#232451 0,transparent 56%),radial-gradient(ellipse at 14% 93%,#162f47 0,transparent 53%),#0d1022}
+header,footer{border-color:#9faee42b}
+.brand{font-size:22px;letter-spacing:-.05em}
+.brand i{background:#aaa7ff24;color:#d8daff}
+.ghost,.copy{border-color:#9faee44d}
+h1,h2{font-family:system-ui,sans-serif}
+h1{font-size:clamp(51px,7.1vw,100px);font-weight:760}
+h1 em{font-weight:760;font-style:normal;background:linear-gradient(110deg,#c3b3ff,#94d8ff);color:transparent;background-clip:text;-webkit-background-clip:text}
+h2{font-weight:690;letter-spacing:-.04em}
+.timer{background:#11162cbb;border-color:#9faee44d}
+.machine{background:linear-gradient(150deg,#2c3056,#161c36);border-color:#adb1fc6b;box-shadow:0 28px 60px #050718a0,inset 0 1px #fff3}
+.reel{background:#0b1023}
+.reel:after{background:linear-gradient(#090e23e0,transparent 34%,transparent 66%,#090e23e0)}
+.selection{border-color:#b9b6ff;box-shadow:0 0 19px #b9b6ff56}
+.selection:before{border-left-color:#b9b6ff}
+.selection:after{border-right-color:#b9b6ff}
+.card b,#prize{color:#e2deff}
+#prize{background:#b2a6ff22}
+.spin{background:linear-gradient(110deg,#c2b4ff,#98d1fc);color:#131535;box-shadow:inset 0 1px #fff9,0 5px 12px #090c20}
+.spin:hover{background:#d4cbff}
+dialog{background:#1a2140;border-color:#bebcff72}
+dialog::backdrop{background:#07091bd4}
+.food{--a:#704339;--b:#422c34}
+.sport{--a:#5a467a;--b:#3b305d}
+.tree{--a:#245c65;--b:#183c4a}
+.toys{--a:#793f61;--b:#492b49}
+.projects{--a:#474eaf;--b:#272b6d}
+.art.projects{display:grid;place-items:center;background:none}
+.art.projects::before{content:"↗";display:grid;place-items:center;width:62%;height:62%;border-radius:25%;font-size:clamp(23px,4vw,48px);font-weight:800;color:#22204e;background:linear-gradient(140deg,#f1e6ff,#a6afff 64%,#7f86e9);box-shadow:inset 0 1px #fff,0 5px #6569b8,0 12px 15px #17143785;transform:rotate(-12deg)}
+@media(max-width:700px){h1{font-size:clamp(43px,10.1vw,72px)}}
 </style>
 </head>
 <body>
 <header class="shell">
-<a class="brand" href="./"><i aria-hidden="true">✦</i><span>Новогодний барабан</span></a>
+<a class="brand" href="./"><i aria-hidden="true">✦</i><span>xPlatform</span></a>
 <nav aria-label="Выигрыши"><button class="ghost" id="history">История</button><button class="ghost" id="wallet">Мои скидки <span id="count"></span></button></nav>
 </header>
 <main class="shell">
 <section class="hero" aria-labelledby="heading">
 <div>
 <div class="kicker">✦ Демо-игра</div>
-<h1 id="heading">Новогодний <em>барабан скидок</em></h1>
-<p class="lead">Крутите барабан и получайте демо-промокоды в одной из четырёх категорий.</p>
+<h1 id="heading">Барабан <em>xPlatform</em></h1>
+<p class="lead">Крутите барабан и получайте демо-промокоды в одной из пяти категорий.</p>
 <div class="timer"><p>До Нового года по Москве</p><div class="clock" id="clock" role="timer"></div></div>
 </div>
 <div class="machine">
@@ -116,7 +148,8 @@ const prizes = [
   { id:'food', name:'Фастфуд', discount:20, code:'DEMO-FOOD20' },
   { id:'sport', name:'Спортинвентарь', discount:15, code:'DEMO-SPORT15' },
   { id:'tree', name:'Ёлки', discount:25, code:'DEMO-TREE25' },
-  { id:'toys', name:'Ёлочные игрушки', discount:30, code:'DEMO-TOYS30' }
+  { id:'toys', name:'Ёлочные игрушки', discount:30, code:'DEMO-TOYS30' },
+  { id:'projects', name:'NEW проекты', discount:10, code:'DEMO-NEW10' }
 ];
 const storageKey = 'discount-drum-wins-v1';
 const track = document.querySelector('.track');
@@ -179,13 +212,13 @@ async function spinReel() {
   const prize = prizes[index];
   if (!reducedMotion.matches) {
     const animation = track.animate(
-      [{transform:transform(center)}, {transform:transform(28+index)}],
+      [{transform:transform(center)}, {transform:transform(7*prizes.length+index)}],
       {duration:3250,easing:'cubic-bezier(.14,.64,.12,1)',fill:'forwards'}
     );
     await animation.finished.catch(() => {});
     animation.cancel();
   }
-  center = 4+index;
+  center = prizes.length+index;
   track.style.transform = transform(center);
 
   wins.unshift({id:prize.id,time:Date.now()});
