@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#091e19">
+<meta name="description" content="Новогодний барабан с четырьмя категориями демонстрационных скидок.">
+<title>Новогодний барабан скидок</title>
+<style>
+:root{color-scheme:dark;--ink:#fff6e4;--muted:#b8cdc3;--gold:#ffcf77;--green:#102f26;--row:110px;font-family:system-ui,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;color:var(--ink);background:radial-gradient(ellipse at 78% 25%,#245543 0,transparent 44%),radial-gradient(ellipse at 10% 95%,#203a2c 0,transparent 50%),#091e19;min-height:100vh}
+button,a{-webkit-tap-highlight-color:transparent}
+button{font:inherit;cursor:pointer}
+button:focus-visible,a:focus-visible{outline:3px solid #fff;outline-offset:4px}
+.shell{width:min(1136px,calc(100% - 48px));margin:auto}
+header,footer{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:22px 0;border-bottom:1px solid #b6dbc129}
+.brand{display:flex;align-items:center;gap:11px;color:inherit;text-decoration:none;font-weight:750}
+.brand i{font-style:normal;display:grid;place-items:center;width:40px;height:40px;border-radius:13px;background:#ffcf771a;color:var(--gold);font-size:22px}
+nav{display:flex;gap:8px}
+.ghost,.copy{border:1px solid #b6dbc144;border-radius:12px;padding:10px 14px;background:#ffffff09;color:var(--ink);font-weight:650}
+.ghost:hover,.copy:hover{background:#ffffff20}
+main{padding:53px 0 38px}
+.hero{display:grid;grid-template-columns:1fr 1.04fr;gap:5%;align-items:center}
+.kicker{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:780}
+h1{font-family:Georgia,serif;font-weight:500;font-size:clamp(52px,7.2vw,106px);letter-spacing:-.065em;line-height:.93;margin:20px 0}
+h1 em{display:block;color:var(--gold);font-weight:500}
+.lead{font-size:17px;line-height:1.55;color:var(--muted);max-width:400px;margin:0 0 25px}
+.timer{border:1px solid #b6dbc13b;border-radius:18px;padding:13px 16px;display:inline-block;background:#071b1660}
+.timer p{font-size:12px;margin:0 0 8px;color:var(--muted)}
+.clock{display:flex;align-items:center;gap:10px;text-align:center;font-variant-numeric:tabular-nums}
+.clock span{min-width:37px}
+.clock b{display:block;font-size:25px;line-height:1;color:var(--ink)}
+.clock small{font-size:10px;color:var(--muted)}
+.clock i{font-style:normal;color:var(--gold);align-self:flex-start}
+.machine{padding:15px;border:1px solid #f5d58a64;border-radius:28px;background:linear-gradient(158deg,#305e4b,#1a392d 45%,#162e25);box-shadow:0 28px 60px #00130da0,inset 0 1px #fff3}
+.reel{height:calc(var(--row) * 3);position:relative;overflow:hidden;border-radius:17px;background:#091e18;isolation:isolate}
+.track{will-change:transform}
+.row{height:var(--row);padding:5px 14px;display:flex;align-items:center}
+.card,.category{display:flex;align-items:center;gap:12px;border-radius:16px;min-width:0}
+.card{width:100%;height:100%;padding:0 16px 0 8px}
+.art{width:95px;aspect-ratio:1;flex:none;background-image:url(prizes.png);background-size:200% 200%;filter:drop-shadow(0 6px 6px #12191147)}
+.food{--a:#68412a;--b:#3d2d24;background-position:0 0}
+.sport{--a:#5a456a;--b:#352c4c;background-position:100% 0}
+.tree{--a:#34664d;--b:#224737;background-position:0 100%}
+.toys{--a:#7a3c43;--b:#4b2936;background-position:100% 100%}
+.card,.category{background:linear-gradient(125deg,var(--a),var(--b))}
+.card strong{font-size:clamp(14px,1.8vw,22px)}
+.card small,.category small{display:block;color:#fff2df;font-size:11px;margin-top:4px}
+.card b{margin-left:auto;color:#ffda91;font-size:clamp(21px,3.4vw,41px);letter-spacing:-.05em;white-space:nowrap}
+.reel:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(#071c17ce,transparent 34%,transparent 66%,#071c17ce)}
+.selection{position:absolute;z-index:1;inset:calc(var(--row) + 4px) 12px;border:2px solid #ffd587;border-radius:17px;pointer-events:none;box-shadow:0 0 16px #ffd58739}
+.selection:before,.selection:after{content:"";position:absolute;top:calc(50% - 8px);border:8px solid transparent}
+.selection:before{left:-11px;border-left-color:#ffd587}
+.selection:after{right:-11px;border-right-color:#ffd587}
+.spin{display:block;width:100%;border:0;border-radius:15px;padding:15px;margin-top:13px;background:linear-gradient(125deg,#ffdc91,#ffbc55);color:#2e210d;font-size:17px;font-weight:800;box-shadow:inset 0 1px #fff8,0 5px 12px #051b16}
+.spin:hover{background:#ffe0a3}
+.spin:disabled{cursor:wait;opacity:.7}
+.machine p{text-align:center;color:var(--muted);font-size:12px;margin:12px 0 2px}
+h2{font-family:Georgia,serif;font-weight:500;font-size:clamp(25px,3vw,34px);margin:0 0 15px}
+.catalog{margin-top:46px}
+.categories{display:grid;grid-template-columns:repeat(4,1fr);gap:11px}
+.category{padding:8px;min-height:87px;border:1px solid #fff2}
+.category .art{width:65px}
+.category strong{font-size:14px}
+footer{border-bottom:0;border-top:1px solid #b6dbc129;color:var(--muted);font-size:12px;align-items:flex-start}
+dialog{color:var(--ink);background:#17372d;border:1px solid #f5d58a72;border-radius:24px;max-width:490px;width:calc(100% - 28px);padding:24px;max-height:calc(100dvh - 30px);box-shadow:0 20px 90px #0009}
+dialog::backdrop{background:#04100bd4}
+.dialog-head{display:flex;justify-content:space-between;gap:10px;align-items:start}
+.dialog-head form{margin:0}
+.close{padding:6px 11px;font-size:18px}
+#prize{padding:10px 14px;border-radius:15px;background:#ffce6a1b;color:#ffda91;font-size:21px;font-weight:780}
+#notice:empty{display:none}
+#notice,.dim{color:var(--muted);font-size:14px}
+.records{list-style:none;padding:0;margin:0}
+.records li,.coupon{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;background:#ffffff0b;border-radius:13px;padding:11px;margin-top:9px}
+.records small{display:block;color:var(--muted)}
+code{user-select:all;color:var(--gold);overflow-wrap:anywhere}
+#confetti{position:fixed;inset:0;width:100%;height:100%;pointer-events:none}
+@media(max-width:900px){.categories{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:700px){:root{--row:88px}.shell{width:calc(100% - 28px)}header{padding:12px 0}.brand span{max-width:110px;font-size:13px}.brand i{width:33px;height:33px}.ghost{padding:9px 10px;font-size:12px}nav{gap:4px}main{padding:26px 0}.hero{grid-template-columns:1fr;gap:21px}h1{font-size:clamp(43px,10.1vw,72px);margin:10px 0 13px}.lead{font-size:15px;margin-bottom:12px}.timer{padding:8px 12px}.timer p{margin-bottom:5px}.clock b{font-size:20px}.machine{padding:10px}.card{gap:8px;padding-right:9px}.card .art{width:72px}.catalog{margin-top:27px}.category{gap:5px;padding:6px}.category .art{width:47px}.category strong{font-size:12px}}
+@media(max-width:350px){.brand span{display:none}.category .art{width:35px}}
+</style>
+</head>
+<body>
+<header class="shell">
+<a class="brand" href="./"><i aria-hidden="true">✦</i><span>Новогодний барабан</span></a>
+<nav aria-label="Выигрыши"><button class="ghost" id="history">История</button><button class="ghost" id="wallet">Мои скидки <span id="count"></span></button></nav>
+</header>
+<main class="shell">
+<section class="hero" aria-labelledby="heading">
+<div>
+<div class="kicker">✦ Демо-игра</div>
+<h1 id="heading">Новогодний <em>барабан скидок</em></h1>
+<p class="lead">Крутите барабан и получайте демо-промокоды в одной из четырёх категорий.</p>
+<div class="timer"><p>До Нового года по Москве</p><div class="clock" id="clock" role="timer"></div></div>
+</div>
+<div class="machine">
+<div class="reel" aria-hidden="true"><div class="track"></div><div class="selection"></div></div>
+<button class="spin" id="spin">✦ Крутить барабан</button>
+<p>Каждое вращение приносит демо-промокод</p>
+</div>
+</section>
+<section class="catalog" aria-labelledby="categories-heading">
+<h2 id="categories-heading">Что может выпасть</h2><div class="categories" id="categories"></div>
+</section>
+</main>
+<footer class="shell"><span>Все скидки, промокоды и предложения партнёров демонстрационные. При покупке они не действуют.</span></footer>
+<dialog aria-labelledby="dialog-title">
+<div class="dialog-head"><h2 id="dialog-title"></h2><form method="dialog"><button class="ghost close" aria-label="Закрыть" autofocus>×</button></form></div>
+<div id="dialog-body"></div><p id="notice" role="status"></p>
+<canvas id="confetti" aria-hidden="true"></canvas>
+</dialog>
+<script>
+const prizes = [
+  { id:'food', name:'Фастфуд', discount:20, code:'DEMO-FOOD20' },
+  { id:'sport', name:'Спортинвентарь', discount:15, code:'DEMO-SPORT15' },
+  { id:'tree', name:'Ёлки', discount:25, code:'DEMO-TREE25' },
+  { id:'toys', name:'Ёлочные игрушки', discount:30, code:'DEMO-TOYS30' }
+];
+const storageKey = 'discount-drum-wins-v1';
+const track = document.querySelector('.track');
+const spin = document.querySelector('#spin');
+const dialog = document.querySelector('dialog');
+const title = document.querySelector('#dialog-title');
+const body = document.querySelector('#dialog-body');
+const notice = document.querySelector('#notice');
+const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+const recordDate = new Intl.DateTimeFormat('ru-RU',{dateStyle:'short',timeStyle:'short'});
+let wins = readWins();
+let center = 1;
+
+function readWins() {
+  try {
+    const records = JSON.parse(localStorage.getItem(storageKey) || '[]');
+    if (Array.isArray(records)) {
+      return records.filter(record => record && Number.isFinite(record.time)
+        && Math.abs(record.time) <= 8.64e15 && prizes.some(prize => prize.id === record.id));
+    }
+  } catch {}
+  return [];
+}
+
+function refreshCount() {
+  document.querySelector('#count').textContent = new Set(wins.map(win => win.id)).size;
+}
+
+function card(prize) {
+  return '<div class="row"><div class="card '+prize.id+'"><span class="art '+prize.id+'"></span><span><strong>'+prize.name+'</strong><small>Демо-скидка</small></span><b>−'+prize.discount+'%</b></div></div>';
+}
+
+track.innerHTML = Array.from({length:9}, () => prizes.map(card).join('')).join('');
+document.querySelector('#categories').innerHTML = prizes.map(prize =>
+  '<div class="category '+prize.id+'"><span class="art '+prize.id+'" aria-hidden="true"></span><div><strong>'+prize.name+'</strong><small>Демо-скидка −'+prize.discount+'%</small></div></div>'
+).join('');
+refreshCount();
+
+function transform(index) {
+  const rowHeight = track.firstElementChild.getBoundingClientRect().height;
+  return 'translateY('+((1-index)*rowHeight)+'px)';
+}
+
+function openDialog(heading, html) {
+  title.textContent = heading;
+  body.innerHTML = html;
+  notice.textContent = '';
+  if (!dialog.open) dialog.showModal();
+}
+
+function coupon(prize) {
+  return '<div class="coupon"><code>'+prize.code+'</code><button class="copy" data-code="'+prize.code+'">Копировать</button></div>';
+}
+
+async function spinReel() {
+  if (spin.disabled) return;
+  spin.disabled = true;
+  spin.textContent = 'Барабан крутится…';
+  const index = Math.floor(Math.random() * prizes.length);
+  const prize = prizes[index];
+  if (!reducedMotion.matches) {
+    const animation = track.animate(
+      [{transform:transform(center)}, {transform:transform(28+index)}],
+      {duration:3250,easing:'cubic-bezier(.14,.64,.12,1)',fill:'forwards'}
+    );
+    await animation.finished.catch(() => {});
+    animation.cancel();
+  }
+  center = 4+index;
+  track.style.transform = transform(center);
+
+  wins.unshift({id:prize.id,time:Date.now()});
+  let saved = true;
+  try { localStorage.setItem(storageKey,JSON.stringify(wins)); }
+  catch { saved = false; }
+  refreshCount();
+  spin.textContent = '✦ Крутить ещё';
+  spin.disabled = false;
+
+  openDialog('Ваша демо-скидка','<div id="prize">−'+prize.discount+'% · '+prize.name+
+    '</div><p class="dim">Демо-промокод. При покупке он не действует.</p>'+coupon(prize));
+  if (!saved) notice.textContent = 'Браузер не сохранил выигрыш. Он доступен до закрытия страницы.';
+  celebrate();
+}
+
+spin.addEventListener('click',spinReel);
+new ResizeObserver(() => { track.style.transform = transform(center); }).observe(document.querySelector('.reel'));
+
+document.querySelector('#history').addEventListener('click',() => {
+  const items = wins.map(win => {
+    const prize = prizes.find(item => item.id === win.id);
+    return '<li><div><strong>'+prize.name+'</strong><small>'+recordDate.format(win.time)+'</small></div><span>Демо −'+prize.discount+'%</span></li>';
+  });
+  openDialog('История вращений',items.length ? '<ol class="records">'+items.join('')+'</ol>' :
+    '<p class="dim">Здесь появятся результаты ваших вращений.</p>');
+});
+document.querySelector('#wallet').addEventListener('click',() => {
+  const earned = [...new Set(wins.map(win => win.id))].map(id => prizes.find(prize => prize.id === id));
+  openDialog('Мои скидки',earned.length ? '<p class="dim">Демо-промокоды. При покупке они не действуют.</p>'+
+    earned.map(prize => '<p><strong>'+prize.name+' · −'+prize.discount+'%</strong></p>'+coupon(prize)).join('') :
+    '<p class="dim">Прокрутите барабан, чтобы получить первый демо-промокод.</p>');
+});
+
+body.addEventListener('click',async event => {
+  const button = event.target.closest('[data-code]');
+  if (!button) return;
+  const code = button.dataset.code;
+  try {
+    await navigator.clipboard.writeText(code);
+    notice.textContent = 'Скопировано: '+code;
+  } catch {
+    const range = document.createRange();
+    range.selectNodeContents(button.previousElementSibling);
+    const selection = getSelection();
+    selection.removeAllRanges();
+    selection.addRange(range);
+    notice.textContent = 'Промокод выделен. Скопируйте его вручную.';
+  }
+});
+
+const clock = document.querySelector('#clock');
+const moscow = 3*60*60*1000;
+const year = new Date(Date.now()+moscow).getUTCFullYear();
+const deadline = Date.UTC(year+1,0,1)-moscow;
+const units = ['дн.','час.','мин.','сек.'];
+function tick() {
+  const seconds = Math.max(0,Math.ceil((deadline-Date.now())/1000));
+  const values = [Math.floor(seconds/86400),Math.floor(seconds/3600)%24,Math.floor(seconds/60)%60,seconds%60];
+  clock.innerHTML = values.map((value,index) => '<span><b>'+String(value).padStart(2,'0')+'</b><small>'+units[index]+'</small></span>').join('<i aria-hidden="true">:</i>');
+}
+tick();
+setInterval(tick,1000);
+
+const canvas = document.querySelector('#confetti');
+let effect = 0;
+function celebrate() {
+  if (reducedMotion.matches) return;
+  const context = canvas.getContext('2d');
+  if (!context) return;
+  const token = ++effect;
+  const width = canvas.width = innerWidth;
+  const height = canvas.height = innerHeight;
+  const palette = ['#ffd17b','#fff2da','#7dd5a0','#f47574','#c49bfc'];
+  const pieces = Array.from({length:120},(_,i) => ({
+    dx:(Math.random()-.5)*width*1.2, dy:-130-Math.random()*320,
+    angle:Math.random()*7, size:4+Math.random()*6, color:palette[i%palette.length]
+  }));
+  const start = performance.now();
+  function frame(now) {
+    if (token !== effect) return;
+    context.clearRect(0,0,width,height);
+    const t = (now-start)/1000;
+    if (t > 1.6 || !dialog.open) return;
+    context.globalAlpha = 1-t/1.6;
+    for (const p of pieces) {
+      context.save();
+      context.translate(width/2+p.dx*t,height*.47+p.dy*t+340*t*t);
+      context.rotate(p.angle+5*t);
+      context.fillStyle = p.color;
+      context.fillRect(0,0,p.size,p.size*.56);
+      context.restore();
+    }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+}
+
+dialog.addEventListener('close',() => { ++effect; });
+</script>
+</body>
+</html>
