@@ -10,7 +10,7 @@
 <meta property="og:url" content="https://botsmartpro.github.io/discount-drum/">
 <meta property="og:title" content="xPlatform — барабан скидок">
 <meta property="og:description" content="Крутите барабан и получайте демо-промокоды в пяти категориях, включая NEW проекты.">
-<meta property="og:image" content="https://botsmartpro.github.io/discount-drum/xplatform-preview.jpg">
+<meta property="og:image" content="https://botsmartpro.github.io/discount-drum/xplatform-cover.jpg">
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="627">
@@ -132,7 +132,6 @@ dialog::backdrop{background:#07091bd4}
 <main class="shell">
 <section class="hero" aria-labelledby="heading">
 <div>
-<div class="kicker">✦ Демо-игра</div>
 <h1 id="heading">Барабан <em>xPlatform</em></h1>
 <p class="lead">Крутите барабан и получайте демо-промокоды в одной из пяти категорий.</p>
 <div class="timer"><p>До Нового года по Москве</p><div class="clock" id="clock" role="timer"></div></div>
@@ -189,7 +188,7 @@ function refreshCount() {
 }
 
 function card(prize) {
-  return '<div class="row"><div class="card '+prize.id+'"><span class="art '+prize.id+'"></span><span><strong>'+prize.name+'</strong><small>Демо-скидка</small></span><b>−'+prize.discount+'%</b></div></div>';
+  return '<div class="row"><div class="card '+prize.id+'"><span class="art '+prize.id+'"></span><span><strong>'+prize.name+'</strong></span><b>−'+prize.discount+'%</b></div></div>';
 }
 
 track.innerHTML = Array.from({length:9}, () => prizes.map(card).join('')).join('');
